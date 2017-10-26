@@ -1,0 +1,24 @@
+# A minimal subset of OpenDirectory schema
+# The schema is used to represent FreeIPA objects to OpenDirectory clients so
+# that they are able to retrieve and consume them
+#
+# Based on the work done by "Răzvan Corneliu C.R. VILT" <razvan.vilt@me.com>
+#
+dn: cn=schema
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.12.3 NAME 'apple-config-realname' DESC 'config real name' EQUALITY caseExactIA5Match SUBSTR caseExactIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.12.7 NAME 'apple-kdc-authkey' DESC 'KDC master key RSA encrypted with realm public key' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.12.8 NAME 'apple-kdc-configdata' DESC 'Contents of the kdc.conf file' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.1.19 NAME 'apple-keyword' DESC 'keywords' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.12.5 NAME 'apple-ldap-replica' DESC 'LDAP replication list' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.12.6 NAME 'apple-ldap-writable-replica' DESC 'LDAP writable replication list' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.12.4 NAME 'apple-password-server-list' DESC 'password server replication plist' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.12.1 NAME 'apple-password-server-location' DESC 'password server location' EQUALITY caseExactIA5Match SUBSTR caseExactIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+attributeTypes: (1.3.6.1.4.1.250.1.60 NAME 'ttl' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+attributeTypes: (1.3.6.1.4.1.63.1000.1.1.1.17.1 NAME 'apple-xmlplist' DESC 'XML plist data' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributesTypes: ( 1.2.840.113556.1.4.867 NAME 'altSecurityIdentities' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributesTypes: ( 1.3.6.1.4.1.63.1000.1.1.2.16.2 NAME ( 'authAuthority' 'authAuthority2') DESC 'password server authentication authority' EQUALITY caseExactMatch SUBSTR caseExactSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+
+dn: cn=schema
+objectClasses: ( 1.3.6.1.4.1.63.1000.1.1.2.1 NAME 'apple-account' SUP top AUXILIARY DESC 'generic apple account'  MAY ( authAuthority $ sambaAcctFlags $ sambaPwdLastSet $ sambaLogonTime $ sambaLogoffTime $ sambaKickoffTime $ sambaHomeDrive $ sambaLogonScript $ sambaProfilePath $ sambaUserWorkstations $ sambaHomePath $ sambaSID $ sambaPrimaryGroupSID $ userCertificate $ userPKCS12 $ jpegPhoto $ altSecurityIdentities ) )
+objectClasses: (1.3.6.1.4.1.63.1000.1.1.2.12 NAME 'apple-configuration' DESC 'configuration' SUP top STRUCTURAL MAY ( cn $ apple-config-realname $ modifyTimestamp $ apple-password-server-location $ apple-password-server-list $ apple-ldap-replica $ apple-ldap-writable-replica $ apple-keyword $ apple-kdc-authkey $ apple-kdc-configdata $ apple-xmlplist $ ttl ) )
+

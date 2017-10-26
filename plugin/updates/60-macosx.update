@@ -1,0 +1,16 @@
+dn: cn=opendirectory,cn=etc,$SUFFIX
+default: objectclass: top
+default: objectclass: nsContainer
+default: cn: opendirectory
+
+dn: ou=macosxodconfig,cn=opendirectory,cn=etc,$SUFFIX
+default: objectclass: top
+default: objectclass: organizationalUnit
+default: objectclass: apple-configuration
+default: ou: macosxodconfig
+default: aci: targetattr = "description || cn || objectclass || ou || apple-xmlplist") (targetfilter ="(objectclass=apple-configuration)")(version 3.0;acl "permission:System: Read Open Directory Mac OS X Profile";allow (compare,read,search) userdn = "ldap:///anyone";)
+
+dn: cn=users,cn=accounts,$SUFFIX
+default: aci: (targetattr = "altSecurityIdentities")(targetfilter = "(objectclass=posixaccount)")(version 3.0;acl "permission: System: Read User Alternative Security Identities";allow (compare,read,search) userdn= "ldap:///anyone";)
+
+
